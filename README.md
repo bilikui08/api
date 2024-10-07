@@ -22,7 +22,7 @@ Sigue los pasos a continuación para instalar y ejecutar el proyecto en tu máqu
 ├── config/              # Configuraciones de la aplicación como el archivo router.json y el directorio jwt donde se alojara la clave pública y privada para generar el token
 ├── docker/              # Directorio donde se aloja la configuración para levantar el docker
 ├── public/              # Directorio de archivos públicos de la aplicación
-├── scripts/             # Aqui se aloja el archivo verifarma para correr por consola comandos de verifarma
+├── scripts/             # Aqui se aloja el archivo  para correr por consola comandos de 
 ├── src/                 # Código fuente de la aplicación
 ├── tests/               # Clases de Units Test
 ├── var/                 # Aqui se aloja los directorios de logs de la aplicación
