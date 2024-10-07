@@ -14,7 +14,7 @@ class PagoRepository extends AbstractRepository
 {
     public function getTableName(): string
     {
-        return 'tarjeta';
+        return 'pago';
     }
 
     public function getFields(): array
