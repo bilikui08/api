@@ -2,10 +2,10 @@
 
 Este proyecto utiliza Docker Compose para gestionar contenedores de servicios como una base de datos y una aplicación web. 
 El contenedor cuenta con dos servicios: 
-1) Apache - Servidor Web (api_verifarma_apache) - Puerto 80
-2) Mysql - Base de datos (api_verifarma_mysql) - Puerto 3306
+1) Apache - Servidor Web (api_apache) - Puerto 82
+2) Mysql - Base de datos (api_mysql) - Puerto 3308
 
-También cuenta con un network bridge (api_verifarma_network)
+También cuenta con un network bridge (api_network)
 
 Sigue los pasos a continuación para instalar y ejecutar el proyecto en tu máquina local.
 
@@ -38,19 +38,19 @@ Todo tipo de dependencia, (se explica en mas detalle en el próximo apartado) se
 Correr los siguientes comandos:
 
 1) docker-compose up -d
-2) docker exec -it api_verifarma_apache bash
+2) docker exec -it api_apache bash
 3) composer install
 4) cp .env.dist .env
 5) Copiar los siguientes datos de conexión de base de datos, al archivo generado del paso anterior (.env):
 ```plaintext
 DATABASE_DRIVER=pdo_mysql
-DATABASE_HOST=api_verifarma_mysql
+DATABASE_HOST=api_mysql
 DATABASE_PORT=3306
-DATABASE_NAME=api_verifarma
-DATABASE_USER=api_verifarma
-DATABASE_PASSWORD=api_verifarma
+DATABASE_NAME=api
+DATABASE_USER=api
+DATABASE_PASSWORD=api
 ```
-6) php scripts/verifarma run-migrations
+6) php scripts/api run-migrations
 
 ## Comprobación de ambiente levantado
 
@@ -94,32 +94,16 @@ Para autenticar contra la API. Se debera pasar las credenciales mencionadas arri
 
 Devolverá el Token.
 
-3) GET - /api/farmacia/{id} - Autenticado
+3) POST - /api/tarjeta - Autenticado
 
-Devuelve la farmacia por ID. 
-
-Se deberá pasar por header el token como "Authorization: Bearer {Token}"
-
-4) POST - /api/farmacia - Autenticado
-
-Guarda un nuevo registro farmacia. 
-
-Se deberá pasar en el body el siguiente formato:
-
-{
-    "nombre": "nombre",
-    "direccion": "dirección",
-    "latitud": "-34.810896",
-    "longitud": "-58.3702655"
-}
+Crea una nueva tarjeta
 
 Se deberá pasar por header el token como "Authorization: Bearer {Token}"
 
-5) GET - /api/farmacia?lat={latitud}&lon={longitud} - Autenticado
+4) 
 
-Según los parametros dados de latitud y longitud, encuentra la farmacia mas cercana.
 
-Se deberá pasar por header el token como "Authorization: Bearer {Token}"
+
 
 ## Comandos utiles
 Para correr los test unitarios:
