@@ -98,6 +98,17 @@ Devolverá el Token.
 
 Crea una nueva tarjeta
 
+Ejemplo de request body: 
+
+{
+    "dni": "12111222",
+    "nombre": "Juan",
+    "apellido": "Sanchez",
+    "numero": "1234567890123456",
+    "nombre_entidad_bancaria": "visa",
+    "limite": "500000"
+}
+
 Se deberá pasar por header el token como "Authorization: Bearer {Token}"
 
 4) 
