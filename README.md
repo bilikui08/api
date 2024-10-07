@@ -135,15 +135,15 @@ Para correr los php cs fixer y que corriga los archivos automaticamente:
 ```
 Para entrar el contenedor:
 ```plaintext
-docker exec -it api_verifarma_apache bash
+docker exec -it api_apache bash
 ```
 Para correr las migrations:
 ```plaintext
-php scripts/verifarma run-migrations
+php scripts/api run-migrations
 ```
 Para deshacer los cambios de las migrations:
 ```plaintext
-php scripts/verifarma run-migrations --down
+php scripts/api run-migrations --down
 ```
 Empezar el contenedor
 ```plaintext

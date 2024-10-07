@@ -29,25 +29,14 @@
             ]
         },
         {
-            "path": "/api/farmacia",
+            "path": "/api/tarjeta/pagar",
             "method": "POST",
             "authorization": "true",
-            "name": "create-farmacia",
-            "controller": "\\Src\\Infrastructure\\Controller\\Farmacia\\CreateController",
+            "name": "pagar",
+            "controller": "\\Src\\Infrastructure\\Controller\\Tarjeta\\PagarController",
             "params": [
-                "\\Src\\Infrastructure\\Persistence\\Repository\\FarmaciaRepository"
-            ]
-        },
-        {
-            "path": "/api/farmacia",
-            "query": "?lat={latitud}&lon={longitud}",
-            "method": "GET",
-            "authorization": "true",
-            "name": "get-farmacia-by-query-string",
-            "controller": "\\Src\\Infrastructure\\Controller\\Farmacia\\GetClosestFarmaciaController",
-            "params": [
-                "\\Src\\Infrastructure\\Persistence\\Repository\\FarmaciaRepository",
-                "\\Src\\Domain\\Service\\CoordinateDistanceService"
+                "\\Src\\Infrastructure\\Persistence\\Repository\\PagoRepository",
+                "\\Src\\Infrastructure\\Persistence\\Repository\\TarjetaRepository"
             ]
         }
     ]

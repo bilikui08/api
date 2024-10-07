@@ -9,6 +9,7 @@ use Monolog\Handler\StreamHandler;
 use PDOException;
 use Src\Infrastructure\Persistence\Migration\UserMigration;
 use Src\Infrastructure\Persistence\Migration\TarjetaMigration;
+use Src\Infrastructure\Persistence\Migration\PagoMigration;
 use Src\Infrastructure\Persistence\PdoPersistence;
 
 class MigrationHandler
@@ -22,6 +23,7 @@ class MigrationHandler
     private array $migrations = [
         UserMigration::class,
         TarjetaMigration::class,
+        PagoMigration::class,
     ];
 
     public function __construct()

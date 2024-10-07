@@ -42,4 +42,29 @@ class TarjetaRepository extends AbstractRepository
             $updatedAt
         );
     }
+
+    public function getByNumero(string $numero): ModelInterface|null
+    {
+        $this->queryBuilder->clear();
+        $sql = $this
+            ->queryBuilder
+            ->select($this->getFields())
+            ->from($this->getTableName())
+            ->where('numero', '=', $numero)
+            ->getQuery();
+
+        $values = $this->queryBuilder->getValues();
+
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindValue(1, $values[0]);
+        $this->logger->debug($sql);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $model = null;
+        if ($result) {
+            $model = $this->fillArrayResultToModel($result);
+        }
+
+        return $model;
+    }
 }
