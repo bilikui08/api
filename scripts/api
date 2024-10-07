@@ -1,0 +1,16 @@
+#!/usr/bin/env php
+<?php
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use Dotenv\Dotenv;
+use Src\Application\Command\MigrationCommand;
+use Symfony\Component\Console\Application;
+
+Dotenv::createUnsafeImmutable(__DIR__ . '/../')->load();
+
+$app = new Application('Verifarma Api', '1.0.0');
+
+$app->add(new MigrationCommand());
+
+$app->run();

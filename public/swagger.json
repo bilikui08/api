@@ -1,0 +1,254 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Swagger Docs para Api de Verifarma",
+        "description": "Esta es una API de documentación con Swagger para el Challenge de Verifarma",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "http://localhost/": {},
+        "/api/auth": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Autenticación a la aplicación por username y password",
+                "operationId": "d1d0523715c33af3e07a6b8d08cb5237",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "username": {
+                                        "description": "Nombre del usuario",
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "description": "Contraseña del usuario",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "example": {
+                                "username": "admin",
+                                "password": "verifarmaApi"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Devuelve el Token",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Auth"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/farmacia": {
+            "get": {
+                "tags": [
+                    "Farmacias"
+                ],
+                "summary": "Obtiene la farmacia más cercana dados una latitud y longitud pasado por parámetro",
+                "operationId": "de3cefe34913437aeaa129c7000149c0",
+                "parameters": [
+                    {
+                        "name": "lat",
+                        "in": "query",
+                        "description": "Latitud",
+                        "required": true,
+                        "schema": {
+                            "type": "float"
+                        }
+                    },
+                    {
+                        "name": "lon",
+                        "in": "query",
+                        "description": "Longitud",
+                        "required": true,
+                        "schema": {
+                            "type": "float"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista de farmacias",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Farmacia"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "scalar": "bearerAuth"
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Farmacias"
+                ],
+                "summary": "Inserta una farmacia",
+                "operationId": "210b66e7e902dae63f105915b7ee761d",
+                "requestBody": {
+                    "description": "Datos de la farmacia a insertar",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Farmacia"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Guarda una farmacia",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Farmacia"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "scalar": "bearerAuth"
+                    }
+                ]
+            }
+        },
+        "/api/farmacia/{id}": {
+            "get": {
+                "tags": [
+                    "Farmacias"
+                ],
+                "summary": "Obtiene una farmacia por ID",
+                "operationId": "2cf7e47140b7017d557f54045c377d4e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la farmacia",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista de farmacias",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Farmacia"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "scalar": "Authorization"
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Farmacia": {
+                "description": "Modelo de Farmacia",
+                "properties": {
+                    "id": {
+                        "description": "ID de la farmacia",
+                        "type": "integer"
+                    },
+                    "nombre": {
+                        "description": "Nombre de la farmmacia",
+                        "type": "string"
+                    },
+                    "direccion": {
+                        "description": "Dirección de la farmmacia",
+                        "type": "string"
+                    },
+                    "latitud": {
+                        "description": "Latitud de la farmmacia",
+                        "type": "string"
+                    },
+                    "longitud": {
+                        "description": "Longitud de la farmmacia",
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "description": "Fecha de creación de la farmmacia",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "description": "Fecha de actualización de la farmmacia",
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "Auth": {
+                "description": "Modelo de Auth",
+                "properties": {
+                    "token": {
+                        "description": "Bearer Token",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "name": "Authorization",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Authentication",
+            "description": "Authentication"
+        },
+        {
+            "name": "Farmacias",
+            "description": "Farmacias"
+        }
+    ]
+}

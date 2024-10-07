@@ -1,0 +1,22 @@
+
+###> symfony/framework-bundle ###
+.env
+/var/*
+!/var/log
+/var/log/*
+!var/log/.gitkeep
+/vendor/
+###< symfony/framework-bundle ###
+
+###> symfony/phpunit-bridge ###
+.phpunit
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###
+
+###> lexik/jwt-authentication-bundle ###
+/config/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###
+
+/.phplint.cache/*
+.php-cs-fixer.cache
