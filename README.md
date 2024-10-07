@@ -111,9 +111,18 @@ Ejemplo de request body:
 
 Se deberá pasar por header el token como "Authorization: Bearer {Token}"
 
-4) 
+4) POST - http://localhost:82/api/tarjeta/pagar
 
+Crea un pago
 
+Ejemplo de request body: 
+
+{
+    "tarjeta": "1234567890123456",
+    "monto": "55000"
+}
+
+Se deberá pasar por header el token como "Authorization: Bearer {Token}"
 
 
 ## Comandos utiles
